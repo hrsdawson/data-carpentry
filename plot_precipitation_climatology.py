@@ -29,13 +29,13 @@ def create_plot(clim, model_name, season, gridlines=False, levels=None):
       season (str): Season
       
     Kwargs:
-      gridlines (bool): Select whether to plot gridlines 
+      gridlines (bool): Select whether to plot gridlines
       levels (list): Tick marks on the colorbar 
     
     """
-        
+    
     if not levels:
-        levels = np.arange(0, 13.5, 1.5)
+    levels = np.arange(0, 13.5, 1.5)
         
     fig = plt.figure(figsize=[12,5])
     ax = fig.add_subplot(111, projection=ccrs.PlateCarree(central_longitude=180))
@@ -61,7 +61,7 @@ def main(inargs):
     clim = dset['pr'].groupby('time.season').mean('time', keep_attrs=True)
     clim = convert_pr_units(clim)
 
-    create_plot(clim, dset.attrs['model_id'], inargs.season, gridlines=inargs.gridlines, levels=inargs.cbar_levels)
+    create_plot(clim, dset.attrs['model_id'], inargs.season, gridline=inargs.gridlines, levels=inargs.cbar_levels)
     plt.savefig(inargs.output_file, dpi=200)
 
 
